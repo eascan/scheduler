@@ -68,13 +68,16 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
+    appointments: {},
   });
+
+  const dailyAppointments = [];
 
   const setDay = (day) => setState({...state, day});
 
   const setDays = (days) => setState((prev) => ({...prev, days}));
 
-  const schedule = appointments.map((appointment) => (
+  const schedule = dailyAppointments.map((appointment) => (
     <Appointment key={appointment.id} {...appointment} />
   ));
 
