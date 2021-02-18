@@ -42,6 +42,10 @@ const appointments = [
   {
     id: 3,
     time: "2pm",
+  },
+  {
+    id: 4,
+    time: "3pm",
     interview: {
       student: "James Miller",
       interviewer: {
@@ -52,8 +56,8 @@ const appointments = [
     },
   },
   {
-    id: 4,
-    time: "3pm",
+    id: 5,
+    time: "4pm",
     interview: {
       student: "Terry Smith",
       interviewer: {
@@ -64,8 +68,8 @@ const appointments = [
     },
   },
   {
-    id: 5,
-    time: "3pm",
+    id: 6,
+    time: "5pm",
     interview: {
       student: "Edward Swed",
       interviewer: {
@@ -102,9 +106,7 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
-      </section>
+      <section className="schedule">{schedule}</section>
     </main>
   );
 }
