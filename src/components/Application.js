@@ -4,65 +4,7 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment/index";
-
-// const appointments = [
-//   {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer: {
-//         id: 1,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       },
-//     },
-//   },
-//   {
-//     id: 3,
-//     time: "2pm",
-//   },
-//   {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "James Miller",
-//       interviewer: {
-//         id: 2,
-//         name: "Tori Malcolm",
-//         avatar: "https://i.imgur.com/Nmx0Qxo.png",
-//       },
-//     },
-//   },
-//   {
-//     id: 5,
-//     time: "4pm",
-//     interview: {
-//       student: "Terry Smith",
-//       interviewer: {
-//         id: 3,
-//         name: "Mildred Nazir",
-//         avatar: "https://i.imgur.com/T2WwVfS.png",
-//       },
-//     },
-//   },
-//   {
-//     id: 6,
-//     time: "5pm",
-//     interview: {
-//       student: "Edward Swed",
-//       interviewer: {
-//         id: 4,
-//         name: "Cohana Roy",
-//         avatar: "https://i.imgur.com/FK8V841.jpg",
-//       },
-//     },
-//   },
-// ];
+import getAppointmentsForDay from "helpers/selectors";
 
 export default function Application(props) {
   const [state, setState] = useState({
@@ -71,21 +13,24 @@ export default function Application(props) {
     appointments: {},
   });
 
-  const dailyAppointments = [];
-
   const setDay = (day) => setState({...state, day});
 
-  const setDays = (days) => setState((prev) => ({...prev, days}));
+  const allAppointments = getAppointmentsForDay(state, state.day);
 
-  const schedule = dailyAppointments.map((appointment) => (
+  const schedule = allAppointments.map((appointment) => (
     <Appointment key={appointment.id} {...appointment} />
   ));
 
   useEffect(() => {
-    axios.get("/api/days").then((response) => {
-      console.log(response.data);
-      setDays(response.data);
-    });
+    Promise.all([axios.get("/api/days"), axios.get("/api/appointments")]).then(
+      (responses) => {
+        setState((prev) => ({
+          ...prev,
+          days: responses[0].data,
+          appointments: responses[1].data,
+        }));
+      }
+    );
   }, []);
 
   return (
@@ -106,7 +51,10 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">{schedule}</section>
+      <section className="schedule">
+        {schedule}
+        <Appointment key="last" time="5pm" />
+      </section>
     </main>
   );
 }

@@ -1,4 +1,4 @@
-export function getAppointmentsForDay(state, day) {
+export default function getAppointmentsForDay(state, day) {
   let appointmentsDay = [];
   const appointments = [];
 
@@ -14,15 +14,15 @@ export function getAppointmentsForDay(state, day) {
     // console.log(appointmentsDay);
 
     for (const app of appointmentsDay) {
-      const keys = Object.keys(state.appointments);
+      // const keys = Object.keys(state.appointments);
       // console.log("Every app for the day: ", app);
-      for (const key of keys) {
-        // console.log("everykey:", key);
-        if (app == key) {
-          // console.log(state.appointments.key);
-          appointments.push(state.appointments[key]);
-        }
-      }
+      // for (const key of keys) {
+      // console.log("everykey:", key);
+      // if (app == key) {
+      // console.log(state.appointments.key);
+      appointments.push(state.appointments[app]);
+      // }
+      // }
     }
   }
   return appointments;
