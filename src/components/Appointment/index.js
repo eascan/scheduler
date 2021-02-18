@@ -1,12 +1,12 @@
 import React, {Fragment} from "react";
-import "components/Appointment/index.scss";
+import "./index.scss";
 import Header from "components/Appointment/Header";
 import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 
 export default function Appointment(props) {
   return (
-    <div>
+    <article class="appointment">
       <Header time={props.time} />
       {props.interview ? (
         <Show
@@ -16,6 +16,6 @@ export default function Appointment(props) {
       ) : (
         <Empty />
       )}
-    </div>
+    </article>
   );
 }
