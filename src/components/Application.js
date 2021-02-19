@@ -19,7 +19,7 @@ export default function Application(props) {
   });
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    console.log("THIS IS INTERVIEW:", id, interview);
   }
 
   useEffect(() => {
