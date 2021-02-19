@@ -14,23 +14,6 @@ export default function Application(props) {
     interviewers: {},
   });
 
-  const setDay = (day) => setState({...state, day});
-
-  const allAppointments = getAppointmentsForDay(state, state.day);
-
-  const schedule = allAppointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
-
-    return (
-      <Appointment
-        key={appointment.id}
-        id={appointment.id}
-        time={appointment.time}
-        interview={interview}
-      />
-    );
-  });
-
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
@@ -45,6 +28,28 @@ export default function Application(props) {
       }));
     });
   }, []);
+
+  // console.log("ALL INTERVIEWERS", state.interviewers);
+
+  const setDay = (day) => setState({...state, day});
+
+  const allAppointments = getAppointmentsForDay(state, state.day);
+
+  // console.log("ALL APPOINTMENTS:", allAppointments);
+
+  const schedule = allAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+    // console.log("THIS IS APPOINTMENT INTERVIEW:", appointment.interview);
+
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
+  });
 
   return (
     <main className="layout">
