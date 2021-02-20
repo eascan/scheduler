@@ -4,12 +4,21 @@ import InterviewerListItem from "components/InterviewerListItem";
 
 export default function InterviewerList(props) {
   const interviewers = props.interviewers.map((interviewer) => {
+    function selectedOrNot() {
+      if (!props.interviewer) {
+        return false;
+      } else if (interviewer.id === props.interviewer) {
+        return true;
+      } else {
+        return false;
+      }
+    }
     return (
       <InterviewerListItem
         key={interviewer.id}
         name={interviewer.name}
         avatar={interviewer.avatar}
-        selected={interviewer.id === props.interviewer}
+        selected={selectedOrNot()}
         setInterviewer={(event) => props.setInterviewer(interviewer.id)}
       />
     );
