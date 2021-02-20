@@ -19,7 +19,22 @@ export default function Application(props) {
   });
 
   function bookInterview(id, interview) {
-    console.log("THIS IS INTERVIEW:", id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview},
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    return axios
+      .put(`/api/appointments/${id}`, {interview})
+      .then((response) => {
+        console.log("success!!");
+        setState({...state, appointments});
+      });
   }
 
   useEffect(() => {
