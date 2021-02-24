@@ -47,12 +47,8 @@ export default function Appointment(props) {
       .catch((err) => transition(ERROR_DELETE, true));
   }
 
-  function setConfirm() {
-    transition(CONFIRM);
-  }
-
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
 
