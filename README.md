@@ -1,5 +1,16 @@
 # Interview Scheduler
 
+## Screenshots
+
+Home page
+!["Screenshot Description"](https://github.com/eascan/scheduler/blob/master/docs/Home-page.png?raw=true)
+
+Creating a new appointment
+!["Screenshot Description"](https://github.com/eascan/scheduler/blob/master/docs/Create-new-app.png?raw=true)
+
+Confirmation of delete action
+!["Screenshot Description"](https://github.com/eascan/scheduler/blob/master/docs/Delete-confirmation.png?raw=true)
+
 ## Setup
 
 Install dependencies with `npm install`.
