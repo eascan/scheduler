@@ -15,9 +15,8 @@ export default function Form(props) {
 
   const cancel = function () {
     resetForm();
-    {
-      props.onCancel();
-    }
+
+    props.onCancel();
   };
 
   const onChange = function (e) {
@@ -30,6 +29,7 @@ export default function Form(props) {
     e.preventDefault();
   };
 
+  //used for error messages
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
@@ -40,7 +40,6 @@ export default function Form(props) {
     }
   }
 
-  // console.log("THIS IS INTERVIEWER IN FORM:", interviewer);
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -75,5 +74,3 @@ export default function Form(props) {
     </main>
   );
 }
-
-// props.onSave(name, interviewer)

@@ -1,5 +1,7 @@
 import {useState} from "react";
 
+// custom hook that will manage transitions to different component views
+
 export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);

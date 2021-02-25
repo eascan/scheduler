@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import "./index.scss";
 import Header from "components/Appointment/Header";
 import Show from "components/Appointment/Show";
@@ -9,6 +9,7 @@ import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm";
 import Error from "components/Appointment/Error";
 
+// custom "states" used for transitioning with custom hook
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";

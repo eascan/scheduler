@@ -1,6 +1,8 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 
+// custom hook that will manage all the state for the application
+
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
